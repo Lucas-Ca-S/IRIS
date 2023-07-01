@@ -1,0 +1,5 @@
+mysql-connector-python==8.0.32
+pytz==2022.1
+pywinrm==0.4.3
+requests==2.25.1
+slack_bolt==1.16.1

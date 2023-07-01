@@ -1,0 +1,22 @@
+name: Deploy iris-escalator on ACR
+
+on: 
+  push:
+    paths:
+    - iris-escalator/**
+
+env:
+  ACR: ${{ secrets.ACR_NAME }}
+  APP_NAME: iris-escalator
+
+jobs:        
+  buildAndPush:
+    name: Build Docker and Push
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          version=prd-$(date +"%y%m.%d%H.%M%S")
+          docker login $ACR --username ${{ secrets.ACR_USERNAME }} --password ${{ secrets.ACR_PASSWORD }}
+          docker build -t $ACR/$APP_NAME:$version ./iris-bot
+          docker push $ACR/$APP_NAME:$version

@@ -1,0 +1,4 @@
+mysql-connector-python==8.0.32
+pytz==2022.1
+requests==2.25.1
+slack-sdk==3.21.3
